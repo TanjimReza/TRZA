@@ -1,0 +1,7 @@
+{
+    "java.format.settings.url": "eclipse-formatter.xml",
+    "editor.formatOnSave": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.runInTerminal": true,
+    "code-runner.showExecutionMessage": true,
+}
