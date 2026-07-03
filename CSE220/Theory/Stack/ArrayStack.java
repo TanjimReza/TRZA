@@ -61,18 +61,18 @@ public class ArrayStack {
     public boolean isBalanced(String expression) {
         
         int lengthOfExpression = expression.length();
-        ArrayStack stack = new ArrayStack(lengthOfExpression);
+        ArrayStack newStack = new ArrayStack(lengthOfExpression);
 
         for (int i = 0; i < lengthOfExpression; i++) {
             char item = expression.charAt(i);
 
             if (item == '(' || item == '{' || item == '[') {
-                stack.push(String.valueOf(item));
+                newStack.push(String.valueOf(item));
             } else if (item == ')' || item == '}' || item == ']') {
-                if (stack.top == -1) {
+                if (newStack.top == -1) {
                     return false;
                 }
-                String poppedValue = stack.pop();
+                String poppedValue = newStack.pop();
                 char value = poppedValue.charAt(0);
 
                 if (value == '(' && item != ')' ||
@@ -84,7 +84,7 @@ public class ArrayStack {
 
         }
 
-        return stack.top == -1;
+        return newStack.top == -1;
     }
 
     public static void main(String[] args) {
