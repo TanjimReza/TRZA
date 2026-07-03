@@ -75,9 +75,9 @@ public class ArrayStack {
                 String poppedValue = stack.pop();
                 char value = poppedValue.charAt(0);
 
-                if (item == '(' && value != ')' ||
-                    item == '{' && value != '}' ||
-                    item == '[' && value != ']'){
+                if (value == '(' && item != ')' ||
+                    value == '{' && item != '}' ||
+                    value == '[' && item != ']'){
                     return false;
                 }
             }
