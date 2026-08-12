@@ -1,3 +1,43 @@
+/*
+ * BINARY SEARCH TREE CLASS EXAMPLE
+ *
+ * Level-order array:
+ * [70, 50, 90, 40, 60, 80, 95]
+ *
+ * Tree created by these values:
+ *
+ *                  70
+ *                /    \
+ *              50      90
+ *             /  \    /  \
+ *           40   60  80   95
+ *
+ * If the array positions start from 1, a node at position n has:
+ * Left child position  = 2 * n
+ * Right child position = 2 * n + 1
+ *
+ * Example: 50 is at position 2.
+ * Its left child is at 2 * 2 = 4, which contains 40.
+ * Its right child is at 2 * 2 + 1 = 5, which contains 60.
+ *
+ * Java arrays start from index 0, so a node at index i has:
+ * Left child index  = 2 * i + 1
+ * Right child index = 2 * i + 2
+ *
+ * Traversal results for this tree:
+ * Pre-order:  70 50 40 60 90 80 95
+ * In-order:   40 50 60 70 80 90 95
+ * Post-order: 40 60 50 80 95 90 70
+ *
+ * In-order is important for a BST because it produces sorted values.
+ * Therefore, 40 is the minimum, 50 is the second smallest,
+ * and 60 is the third smallest. Reverse in-order produces the values
+ * from largest to smallest and can find the nth largest value.
+ *
+ * The array formula explains the level-order representation above.
+ * The insert function below builds the BST by comparing values.
+ * Inserting this array from left to right creates the same tree.
+ */
 public class BinarySearchTree {
     TreeNode root;
     int inOrderNodeCount = 0;
@@ -132,6 +172,20 @@ public class BinarySearchTree {
         findNthLargest(currentNode.left, position);
     }
 
+    public void preOrderTraversal(TreeNode currentNode) {
+        /*
+         * Pre-order visits nodes in this order:
+         * Current node -> Left subtree -> Right subtree
+         */
+        if (currentNode == null) {
+            return;
+        }
+
+        System.out.print(currentNode.value + " ");
+        preOrderTraversal(currentNode.left);
+        preOrderTraversal(currentNode.right);
+    }
+
     public void inOrderTraversal(TreeNode currentNode) {
         /*
          * In-order traversal visits left, current, then right.
@@ -146,6 +200,20 @@ public class BinarySearchTree {
         inOrderTraversal(currentNode.right);
     }
 
+    public void postOrderTraversal(TreeNode currentNode) {
+        /*
+         * Post-order visits nodes in this order:
+         * Left subtree -> Right subtree -> Current node
+         */
+        if (currentNode == null) {
+            return;
+        }
+
+        postOrderTraversal(currentNode.left);
+        postOrderTraversal(currentNode.right);
+        System.out.print(currentNode.value + " ");
+    }
+
     public static void main(String[] args) {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         int[] values = {70, 50, 90, 40, 60, 80, 95};
@@ -157,8 +225,16 @@ public class BinarySearchTree {
                     value);
         }
 
-        System.out.print("In-order traversal: ");
+        System.out.print("Pre-order traversal: ");
+        binarySearchTree.preOrderTraversal(binarySearchTree.root);
+        System.out.println();
+
+        System.out.print("In-order traversal:  ");
         binarySearchTree.inOrderTraversal(binarySearchTree.root);
+        System.out.println();
+
+        System.out.print("Post-order traversal: ");
+        binarySearchTree.postOrderTraversal(binarySearchTree.root);
         System.out.println();
 
         int requestedValue = 80;
