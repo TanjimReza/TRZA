@@ -11,7 +11,7 @@ class TreeNode {
     }
 }
 
-public class BinarySearchTree{
+public class BST{
     TreeNode root;
 
     public TreeNode createFromArray(int[] array){
@@ -79,37 +79,26 @@ public class BinarySearchTree{
         
     }
 
-    public TreeNode createBalancedFromArray(int[] array){
+    public TreeNode createBalancedFromArray(int[] array, int low, int high){
 
-        if (array == null || array.length == 0){
-            return null;
-        }
-
-        root = buildBalanced(array, 0, array.length - 1);
-
-        return root;
-    }
-
-    public TreeNode buildBalanced(int[] array, int low, int high){
-
-        if (low > high){
+        if (array == null || low > high){
             return null;
         }
 
         int mid = low + (high - low) / 2;
         TreeNode node = new TreeNode(array[mid]);
 
-        node.left = buildBalanced(array, low, mid - 1);
-        node.right = buildBalanced(array, mid + 1, high);
+        node.left = createBalancedFromArray(array, low, mid - 1);
+        node.right = createBalancedFromArray(array, mid + 1, high);
 
         return node;
     }
 
     public static void main(String[] args){
-        // int[] array = {20,40,50,60,55,70,90,80,75,85,95,99};
-        int[] array = {10,20,30,40,50};
+        int[] array = {20,40,50,60,55,70,90,80,75,85,95,99};
+        // int[] array = {10,20,30,40,50};
 
-        BinarySearchTree mytree = new BinarySearchTree();
+        BST mytree = new BST();
 
         TreeNode root = mytree.createFromArray(array);
         // mytree.inOrderTraverse(mytree.root);
@@ -117,7 +106,9 @@ public class BinarySearchTree{
         System.out.println(tree_height);
         System.out.println(mytree.isBalanced(mytree.root));
 
-        mytree.createBalancedFromArray(array);
+
+        // int[] array = {10,20,30,40,50};
+        mytree.createBalancedFromArray(array, 0, array.length-1);
         System.out.println(mytree.height(mytree.root));
         System.out.println(mytree.isBalanced(mytree.root));
 
