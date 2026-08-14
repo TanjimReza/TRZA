@@ -79,24 +79,24 @@ public class BST{
         
     }
 
-    public TreeNode createBalancedFromArray(int[] array, int low, int high){
+    public TreeNode buildBalancedBST(int[] array, int start, int end){
 
-        if (array == null || low > high){
+        if (start > end){
             return null;
         }
 
-        int mid = low + (high - low) / 2;
+        int mid = (start + end) / 2;
         TreeNode node = new TreeNode(array[mid]);
 
-        node.left = createBalancedFromArray(array, low, mid - 1);
-        node.right = createBalancedFromArray(array, mid + 1, high);
+        node.left = buildBalancedBST(array, start, mid - 1);
+        node.right = buildBalancedBST(array, mid + 1, end);
 
         return node;
     }
 
     public static void main(String[] args){
-        int[] array = {20,40,50,60,55,70,90,80,75,85,95,99};
-        // int[] array = {10,20,30,40,50};
+        // int[] array = {20,40,50,60,55,70,90,80,75,85,95,99};
+        int[] array = {10,20,30,40,50};
 
         BST mytree = new BST();
 
@@ -108,7 +108,7 @@ public class BST{
 
 
         // int[] array = {10,20,30,40,50};
-        mytree.createBalancedFromArray(array, 0, array.length-1);
+        mytree.buildBalancedBST(array, 0, array.length-1);
         System.out.println(mytree.height(mytree.root));
         System.out.println(mytree.isBalanced(mytree.root));
 
