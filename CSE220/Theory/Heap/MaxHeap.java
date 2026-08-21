@@ -114,10 +114,21 @@ public class MaxHeap {
 
     }
 
+    public void heapSort(){
+        while (this.heapSize>1){
+            Integer maxValue = this.heap[1];
+            this.heap[1] = this.heap[heapSize];
+            this.heap[heapSize] = maxValue;
+            this.heapSize--;
+            sink(1);
+        }
+    }
+
     public void printHeap() {
         for (int i = 1; i <= this.heapCapacity; i++) {
             System.out.print(this.heap[i] + ", ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -127,6 +138,7 @@ public class MaxHeap {
         myheap.printHeap();
         System.out.println(myheap.extractMax());
         myheap.printHeap();
+        myheap.heapSort();  
 
     }
 }
