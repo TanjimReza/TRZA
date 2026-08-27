@@ -105,10 +105,8 @@ public class GraphMatrix {
         System.out.println("0 and 1 adjacent? " + graph.hasEdge(0, 1));
         System.out.println("0 and 4 adjacent? " + graph.hasEdge(0, 4));
 
-        System.out.println("1 and 3 adjacent before removal? "
-                + graph.hasEdge(1, 3));
+        System.out.println("1 and 3 adjacent before removal? " + graph.hasEdge(1, 3));
         graph.removeEdge(1, 3);
-        System.out.println("1 and 3 adjacent after removal? "
-                + graph.hasEdge(1, 3));
+        System.out.println("1 and 3 adjacent after removal? " + graph.hasEdge(1, 3));
     }
 }
